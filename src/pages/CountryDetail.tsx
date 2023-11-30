@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { ApiUrl } from "../Utility/Api";
-import { BsArrowLeft } from "react-icons/bs";
+
+import BackBtn from "../components/BackBtn";
 
 const CountryDetail = () => {
   const [country, setCountry] = useState([]);
@@ -28,33 +29,28 @@ const CountryDetail = () => {
   }, [countryName]);
 
   return (
-    <div className=' mx-8 text-veryDarkBlue w-[20rem] mt-5  dark:text-white'>
-      <div className='flex items-center bg-Mwhite dark:bg-darkBlue w-20 gap-3 mb-3'>
-        <BsArrowLeft />
-        <button className=' '>
-          <Link to='/'>Back</Link>
-        </button>
-      </div>
+    <div className=' md:mx-20 mx-8 md:mt-[5rem] text-veryDarkBlue w-[20rem] md:w-full mt-5 dark:text-white '>
+      <BackBtn />
       {isLoading && !error && <h4>Loading........</h4>}
       {error && !isLoading && <h4>{error}</h4>}
       {country?.map((countryDetail, index) => (
         <div
-          className='w-full items-center h-[250px] md:h-[320px] content-center   rounded-lg'
+          className='w-full items-center h-[250px] md:h-[320px] content-center md:flex md:items-center gap-20   rounded-lg'
           key={countryDetail.flags.png}
         >
           <img
-            className=' w-full h-[15rem] md:w-[370px] md:h-[160px] object-cover '
+            className=' w-full h-[15rem] md:w-[450px] md:h-[300px] object-cover '
             src={countryDetail.flags.png}
             alt=''
           />
 
-          <div className='mt-[40px]'>
+          <div className='mt-[40px] shadow-sm'>
             <h1 className='text-lg font-bold mb-1 md:mb-3 '>
               Native name: {countryDetail.name.common}
             </h1>
             <p>
               Population:
-              <span>
+              <span className='ml-1'>
                 {new Intl.NumberFormat().format(countryDetail.population)}
               </span>
             </p>
@@ -68,7 +64,7 @@ const CountryDetail = () => {
               Capital: <span>{countryDetail.capital}</span>
             </p>
           </div>
-          <div className='mt-16'>
+          <div className='mt-16 shadow-sm '>
             <p>
               Top level Domain: <span>{countryDetail.tld} </span>
             </p>

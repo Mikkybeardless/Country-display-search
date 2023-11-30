@@ -39,7 +39,7 @@ const Home = () => {
   const getCountryByRegion = async (countryRegion: string) => {
     try {
       const res = await fetch(`${ApiUrl}/region/${countryRegion}`);
-      if (!res.ok) throw new Error("Poor Network");
+      if (!res.ok) throw new Error("Error fetching country");
       const data = await res.json();
       setCountries(data);
       setIsLoading(false);
@@ -60,17 +60,20 @@ const Home = () => {
         <FilterCountry onSelect={getCountryByRegion} />
       </div>
 
-      <div className='my-10 mx-auto w-full md:w-[90%] grid grid-cols-1 sm:grid-cols-2 sm:w-4/5 md:grid-cols-3 lg:grid-cols-4 gap-20 text-veryDarkBlue dark:text-white '>
+      <div
+        className='my-10 mx-auto w-full md:w-[90%] grid grid-cols-1 sm:grid-cols-2 sm:w-4/5 md:grid-cols-3
+       lg:grid-cols-4 gap-20 text-veryDarkBlue dark:text-white '
+      >
         {isLoading && !error && <h4>Loading........</h4>}
         {error && !isLoading && <h4>{error}</h4>}
         {countries?.map((country) => (
           <Link to={`/country/${country.name.common}`}>
             <div
-              className='w-fit items-center h-[250px] md:h-[320px] content-center  mx-auto bg-Mwhite  dark:bg-darkBlue rounded-lg'
+              className='w-fit items-center h-[250px] md:h-[320px] content-center shadow-lg   mx-auto bg-Mwhite  dark:bg-darkBlue rounded-lg'
               key={country.flags.png}
             >
               <img
-                className=' w-[250px] h-[120px] md:w-[370px] md:h-[160px] object-cover rounded-t-md'
+                className=' hover:scale-105 transition-all ease-out duration-300 w-[250px] h-[120px] md:w-[370px] md:h-[160px] object-cover rounded-t-md'
                 src={country.flags.png}
                 alt=''
               />
