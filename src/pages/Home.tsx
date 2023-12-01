@@ -14,7 +14,6 @@ const Home = () => {
       const res = await fetch(`${ApiUrl}/all`);
       if (!res.ok) throw new Error("something went wrong!");
       const data = await res.json();
-      console.log(data);
       setCountries(data);
       setIsLoading(false);
     } catch (error) {
@@ -64,16 +63,16 @@ const Home = () => {
         className='my-10 mx-auto w-full md:w-[90%] grid grid-cols-1 sm:grid-cols-2 sm:w-4/5 md:grid-cols-3
        lg:grid-cols-4 gap-20 text-veryDarkBlue dark:text-white '
       >
-        {isLoading && !error && <h4>Loading........</h4>}
+        {isLoading && !error && <h4>Loading.....</h4>}
         {error && !isLoading && <h4>{error}</h4>}
         {countries?.map((country) => (
           <Link to={`/country/${country.name.common}`}>
             <div
-              className='w-fit items-center h-[250px] md:h-[320px] content-center shadow-lg   mx-auto bg-Mwhite  dark:bg-darkBlue rounded-lg'
+              className=' w-[300px] md:w-fit items-center h-[320px] content-center shadow-lg   mx-auto bg-Mwhite  dark:bg-darkBlue rounded-lg'
               key={country.flags.png}
             >
               <img
-                className=' hover:scale-105 transition-all ease-out duration-300 w-[250px] h-[120px] md:w-[370px] md:h-[160px] object-cover rounded-t-md'
+                className=' hover:scale-105 transition-all ease-out duration-300 w-full h-[160px] md:w-[370px] object-cover rounded-t-md'
                 src={country.flags.png}
                 alt=''
               />
@@ -83,17 +82,14 @@ const Home = () => {
                   {country.name.common}
                 </h1>
                 <p>
-                  Population:
-                  <span>
-                    {" "}
-                    {new Intl.NumberFormat().format(country.population)}
-                  </span>
+                  <strong>Population:</strong>
+                  <span> {country.population.toLocaleString()}</span>
                 </p>
                 <p>
-                  Region: <span>{country.region} </span>
+                  <strong>Region: </strong> <span>{country.region} </span>
                 </p>
                 <p>
-                  Capital: <span>{country.capital}</span>
+                  <strong>Capital:</strong> <span>{country.capital}</span>
                 </p>
               </div>
             </div>

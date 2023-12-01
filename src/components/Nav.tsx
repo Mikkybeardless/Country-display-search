@@ -19,7 +19,7 @@ function Nav({ onSearch }) {
             onChange={(e) => {
               setCountryName(e.target.value);
             }}
-            className='outline-none text-veryDarkBlue bg-white dark:bg-darkBlue  text-xl w-full md:w-[10em] lg:w-[10em]  h-fit dark:text-white'
+            className='outline-none text-veryDarkBlue bg-white dark:bg-darkBlue  text-xl w-full lg:w-[10em]  h-fit dark:text-white'
             type='text'
             placeholder='Search for a country...'
             value={countryName}
