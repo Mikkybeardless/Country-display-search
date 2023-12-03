@@ -68,7 +68,7 @@ const Home = () => {
         {countries?.map((country) => (
           <Link to={`/country/${country.name.common}`}>
             <div
-              className=' w-[300px] md:w-fit items-center h-[320px] content-center shadow-lg   mx-auto bg-Mwhite  dark:bg-darkBlue rounded-lg'
+              className=' w-[300px] md:w-fit items-center h-[340px] content-center shadow-lg   mx-auto bg-Mwhite  dark:bg-darkBlue rounded-lg'
               key={country.flags.png}
             >
               <img

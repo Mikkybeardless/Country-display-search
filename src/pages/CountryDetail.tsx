@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ApiUrl } from "../Utility/Api";
-
 import BackBtn from "../components/BackBtn";
+import { namespace } from "../Types";
 
 const CountryDetail = () => {
   const [country, setCountry] = useState([]);
@@ -29,13 +29,13 @@ const CountryDetail = () => {
   }, [countryName]);
 
   return (
-    <div className=' md:mx-20 mx-6 md:mt-[5rem] text-veryDarkBlue  md:w-full mt-5 dark:text-white '>
+    <div className=' md:mx-16 mx-6 md:mt-[5rem] text-veryDarkBlue  md:w-full mt-5 dark:text-white '>
       <BackBtn />
       {isLoading && !error && <h4>Loading........</h4>}
       {error && !isLoading && <h4>{error}</h4>}
-      {country?.map((countryDetail, index) => (
+      {country?.map((countryDetail) => (
         <div
-          className='w-full items-center h-[250px] md:h-[320px] content-center md:flex md:items-center gap-20   rounded-lg'
+          className='w-full items-center h-[250px] md:h-[320px] content-center md:flex md:items-center gap-20 md:gap-9   rounded-lg'
           key={countryDetail.flags.png}
         >
           <img
@@ -73,34 +73,30 @@ const CountryDetail = () => {
             </p>
             <p>
               <strong>Currencies:</strong>
-              {/* {new Intl.ListFormat(undefined, {
-                style: "long",
-                type: "conjuction",
-              }).format(
-                Object.values(countryDetail.currencies).map((c) => c.name)
-              )} */}
             </p>
-            {/* <p>
-              Languages: <span>{countryDetail.languages[0]} </span>
-            </p> */}
+            <p>
+              <strong>Languages:</strong>
+              <span>{countryDetail.languages[0]} </span>
+            </p>
           </div>
-          {countryDetail.borders && (
-            <div>
-              <h2 className='mb-3 font-bold'>Border Countries:</h2>
 
+          <div>
+            <h2 className='mb-3 font-bold'>Border Countries:</h2>
+            {countryDetail.borders ? (
               <div className='flex gap-4'>
-                <p className='  px-10 py-1 bg-Mwhite dark:bg-darkBlue'>
-                  {countryDetail.borders[0]}
-                </p>
-                <p className='bg-Mwhite  px-10 py-1 dark:bg-darkBlue'>
-                  {countryDetail.borders[1]}
-                </p>
-                <p className='bg-Mwhite  px-10 py-1 dark:bg-darkBlue'>
-                  {countryDetail.borders[2]}
-                </p>
+                {countryDetail.borders.map(
+                  (border, index) =>
+                    index < 3 && (
+                      <p className='  px-10 py-1 bg-Mwhite dark:bg-darkBlue'>
+                        {border}
+                      </p>
+                    )
+                )}
               </div>
-            </div>
-          )}
+            ) : (
+              <p>No border countries around this country</p>
+            )}
+          </div>
         </div>
       ))}
     </div>

@@ -3,6 +3,14 @@ const FilterCountry = ({ onSelect }) => {
     const regionName = e.target.value;
     onSelect(regionName);
   };
+  const regions = [
+    { dir: "africa", place: "Africa" },
+    { dir: "america", place: "America" },
+    { dir: "asia", place: "Asia" },
+    { dir: "europe", place: "Europe" },
+    { dir: "oceania", place: "Oceania" },
+  ];
+
   return (
     <select
       className='flex flex-col   py-[12px] px-[25] 
@@ -12,11 +20,9 @@ const FilterCountry = ({ onSelect }) => {
       onChange={handleSelect}
     >
       <option className='hidden'>Filter by region</option>
-      <option value='africa'>Africa</option>
-      <option value='america'>America</option>
-      <option value='asia'>Asia</option>
-      <option value='europe'>Europe</option>
-      <option value='oceania'>Oceania</option>
+      {regions.map((region) => (
+        <option value={`${region.dir}`}>{region.place}</option>
+      ))}
     </select>
   );
 };
