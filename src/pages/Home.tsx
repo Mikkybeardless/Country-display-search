@@ -1,11 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import * as React from "react";
 import { useEffect, useState } from "react";
 import { ApiUrl } from "../Utility/Api";
 import Nav from "../components/Nav";
 import FilterCountry from "./FilterCountry";
 import { Link } from "react-router-dom";
+import { Country } from "../Types";
 
 const Home = () => {
-  const [countries, setCountries] = useState([]);
+  const [countries, setCountries] = React.useState<Country[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -16,7 +19,7 @@ const Home = () => {
       const data = await res.json();
       setCountries(data);
       setIsLoading(false);
-    } catch (error) {
+    } catch (error: any) {
       setIsLoading(false);
       setError(error.message);
     }
@@ -29,7 +32,7 @@ const Home = () => {
       console.log(data);
       setCountries(data);
       setIsLoading(false);
-    } catch (error) {
+    } catch (error: any) {
       setIsLoading(false);
       setError(error.message);
     }
@@ -42,7 +45,7 @@ const Home = () => {
       const data = await res.json();
       setCountries(data);
       setIsLoading(false);
-    } catch (error) {
+    } catch (error: any) {
       setIsLoading(false);
       setError(error.message);
     }

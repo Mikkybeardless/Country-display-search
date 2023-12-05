@@ -1,11 +1,10 @@
-import { useContext, useEffect, useState } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useContext, useEffect } from "react";
 import { HiMoon } from "react-icons/hi2";
 import { RiSunLine } from "react-icons/ri";
-import { ThemeContext } from "./Themecontext";
+import { ThemeContext } from "../context/Themecontext";
 function Header() {
-  const { theme, setTheme } = useContext(ThemeContext);
-
-  const [themeText, setThemeText] = useState("Switch Mode");
+  const { theme, setTheme }: any = useContext(ThemeContext);
 
   useEffect(() => {
     console.log("theme", theme);
@@ -20,7 +19,6 @@ function Header() {
             <HiMoon
               onClick={() => {
                 setTheme("dark");
-                setThemeText("Dark Mode");
                 localStorage.setItem("theme", "dark");
               }}
             />
@@ -31,7 +29,6 @@ function Header() {
             <RiSunLine
               onClick={() => {
                 setTheme("light");
-                setThemeText("Light Mode");
                 localStorage.setItem("theme", "light");
               }}
             />

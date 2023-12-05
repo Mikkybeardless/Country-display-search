@@ -1,11 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { IoIosSearch } from "react-icons/io";
 import { useState } from "react";
 import { FaLongArrowAltRight } from "react-icons/fa";
 
-function Nav({ onSearch }) {
+function Nav({ onSearch }: any) {
   const [countryName, setCountryName] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     onSearch(countryName);
   };

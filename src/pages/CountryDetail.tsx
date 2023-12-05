@@ -1,13 +1,15 @@
-import { useEffect, useState } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import * as React from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { ApiUrl } from "../Utility/Api";
 import BackBtn from "../components/BackBtn";
-import { namespace } from "../Types";
+import { Country } from "../Types";
 
 const CountryDetail = () => {
-  const [country, setCountry] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const [country, setCountry] = React.useState<Country[]>([]);
+  const [isLoading, setIsLoading] = React.useState<boolean>(true);
+  const [error, setError] = React.useState<boolean>(false);
   const { countryName } = useParams();
 
   useEffect(() => {
@@ -19,7 +21,7 @@ const CountryDetail = () => {
         console.log(data);
         setCountry(data);
         setIsLoading(false);
-      } catch (error) {
+      } catch (error: any) {
         setIsLoading(false);
         setError(error.message);
       }
@@ -58,8 +60,8 @@ const CountryDetail = () => {
               <strong>Region: </strong> <span>{countryDetail.region} </span>
             </p>
             <p>
-              <strong>Subregion:</strong>{" "}
-              <span>{countryDetail.subregion} </span>
+              <strong>Subregion:</strong>
+              <span> {countryDetail.subregion} </span>
             </p>
             <p className='mb-1'>
               <strong>Capital: </strong>
@@ -68,7 +70,7 @@ const CountryDetail = () => {
           </div>
           <div className='mt-16 shadow-sm '>
             <p>
-              <strong>Top level Domain:</strong>{" "}
+              <strong>Top level Domain:</strong>
               <span>{countryDetail.tld} </span>
             </p>
             <p>
@@ -76,7 +78,7 @@ const CountryDetail = () => {
             </p>
             <p>
               <strong>Languages:</strong>
-              <span>{countryDetail.languages[0]} </span>
+              <span> {Object.values(countryDetail.languages).join(", ")} </span>
             </p>
           </div>
 
@@ -85,7 +87,7 @@ const CountryDetail = () => {
             {countryDetail.borders ? (
               <div className='flex gap-4'>
                 {countryDetail.borders.map(
-                  (border, index) =>
+                  (border: any, index: number) =>
                     index < 3 && (
                       <p className='  px-10 py-1 bg-Mwhite dark:bg-darkBlue'>
                         {border}
