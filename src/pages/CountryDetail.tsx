@@ -31,14 +31,14 @@ const CountryDetail = () => {
   }, [countryName]);
 
   return (
-    <div className=' md:mx-16 mx-6 md:mt-[5rem] text-veryDarkBlue  md:w-full mt-5 dark:text-white '>
+    <div className=' md:mx-16 mx-6 pr-12  md:mt-[5rem] text-veryDarkBlue  md:w-full mt-5 dark:text-white '>
       <BackBtn />
-      {isLoading && !error && <h4>Loading........</h4>}
+      {isLoading && !error && <h4>Loading....</h4>}
       {error && !isLoading && <h4>{error}</h4>}
-      {country?.map((countryDetail) => (
+      {country?.map((countryDetail,index) => (
         <div
-          className='w-full items-center h-[250px] md:h-[320px] content-center md:flex md:items-center gap-20 md:gap-9   rounded-lg'
-          key={countryDetail.flags.png}
+          className='w-full items-center h-[100vh]  md:h-[320px] content-center md:flex md:items-center gap-20 md:gap-9   rounded-lg'
+          key={index}
         >
           <img
             className=' w-full h-[15rem] md:w-[450px] md:h-[300px] object-cover '
@@ -47,13 +47,12 @@ const CountryDetail = () => {
           />
 
           <div className='mt-[40px] shadow-sm'>
-            <h1 className='text-lg font-bold mb-1 md:mb-3 '>
-              <strong> Native name:</strong> {countryDetail.name.common}
+            <h1 className='text-lg mb-1 md:mb-3 '>
+              <strong>Native name</strong>: {countryDetail.name.common}
             </h1>
             <p>
               <strong> Population:</strong>
-              <span className='ml-1'>
-                {countryDetail.population.toLocaleString()}
+              <span className='ml-1'>{countryDetail.population.toLocaleString()}
               </span>
             </p>
             <p>
@@ -68,28 +67,33 @@ const CountryDetail = () => {
               <span>{countryDetail.capital}</span>
             </p>
           </div>
-          <div className='mt-16 shadow-sm '>
+          <div className='mt-12 shadow-sm '>
             <p>
               <strong>Top level Domain:</strong>
-              <span>{countryDetail.tld} </span>
+              <span> {countryDetail.tld} </span>
             </p>
-            <p>
-              <strong>Currencies:</strong>
-            </p>
+            
+              { Object.keys(countryDetail.currencies).map(currencyKey =>(
+                <div key={currencyKey}>
+                <p className="font-light"><span className="font-bold">Currency: </span>{countryDetail.currencies[currencyKey].name}</p>
+                <p className="font-light"><span className="font-bold">Symbol: </span>{countryDetail.currencies[currencyKey].symbol}</p>
+                </div>
+              ))} 
+              
             <p>
               <strong>Languages:</strong>
               <span> {Object.values(countryDetail.languages).join(", ")} </span>
             </p>
           </div>
 
-          <div>
+          <div className="">
             <h2 className='mb-3 font-bold'>Border Countries:</h2>
             {countryDetail.borders ? (
-              <div className='flex gap-4'>
+              <div className='grid grid-cols-3 gap-4'>
                 {countryDetail.borders.map(
                   (border: any, index: number) =>
-                    index < 3 && (
-                      <p className='  px-10 py-1 bg-Mwhite dark:bg-darkBlue'>
+                    index < 6 && (
+                      <p key={index} className=' px-7 py-1 shadow-md dark:bg-darkBlue'>
                         {border}
                       </p>
                     )

@@ -1,16 +1,23 @@
-const FilterCountry = ({ onSelect }) => {
-  const handleSelect = (e) => {
-    const regionName = e.target.value;
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { ChangeEvent,} from "react";
+import { Regions } from "../Types";
+
+type Onselect = "africa"| "america"| "asia"| "europe" | 'oceania' | string;
+
+
+const FilterCountry = ({ onSelect }:any) => {
+  const handleSelect = (e:ChangeEvent<HTMLSelectElement>) => {
+    const regionName:Onselect = e.target.value;
     onSelect(regionName);
   };
-  const regions = [
+  const regions:Regions = [
     { dir: "africa", place: "Africa" },
     { dir: "america", place: "America" },
     { dir: "asia", place: "Asia" },
     { dir: "europe", place: "Europe" },
     { dir: "oceania", place: "Oceania" },
   ];
-
+ 
   return (
     <select
       className='flex flex-col   py-[12px] px-[25] 
@@ -20,11 +27,10 @@ const FilterCountry = ({ onSelect }) => {
       onChange={handleSelect}
     >
       <option className='hidden'>Filter by region</option>
-      {regions.map((region) => (
-        <option value={`${region.dir}`}>{region.place}</option>
+      {regions.map((region, index) => (
+        <option key={index} value={`${region.dir}`}>{region.place}</option>
       ))}
-    </select>
-  );
+    </select>)
 };
 
 export default FilterCountry;

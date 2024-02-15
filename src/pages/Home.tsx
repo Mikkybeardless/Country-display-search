@@ -68,11 +68,11 @@ const Home = () => {
       >
         {isLoading && !error && <h4>Loading.....</h4>}
         {error && !isLoading && <h4>{error}</h4>}
-        {countries?.map((country) => (
+        {countries?.map((country, index) => (
           <Link to={`/country/${country.name.common}`}>
             <div
-              className=' w-[300px] md:w-fit items-center h-[340px] content-center shadow-lg   mx-auto bg-Mwhite  dark:bg-darkBlue rounded-lg'
-              key={country.flags.png}
+              className=' w-[300px] pb-3 md:w-fit items-center content-center shadow-lg   mx-auto bg-Mwhite  dark:bg-darkBlue rounded-lg'
+              key={index}
             >
               <img
                 className=' hover:scale-105 transition-all ease-out duration-300 w-full h-[160px] md:w-[370px] object-cover rounded-t-md'
