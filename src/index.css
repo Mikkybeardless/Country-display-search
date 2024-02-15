@@ -8,7 +8,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color:white ;
+  background-color:"hsl(0, 0%, 100%)" ;
    
 
   font-synthesis: none;

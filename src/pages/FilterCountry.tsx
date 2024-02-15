@@ -20,7 +20,7 @@ const FilterCountry = ({ onSelect }:any) => {
  
   return (
     <select
-      className='flex flex-col   py-[12px] px-[25] 
+      className='flex flex-col shadow-sm  py-[12px] px-[25] 
             outline-none bg-Mwhite dark:bg-darkBlue pl-4
             ml-auto mr-8 mt-3 w-[150px] h-fit md:top-0  top-16 left-3 hover:cursor-pointer items-center text-[14px] text-veryDarkBlue dark:text-white text-xs
       p-2 rounded-sm'
