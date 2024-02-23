@@ -15,22 +15,22 @@ function Header() {
       <div className='ml-3 md:text-xl text-base '>Where in the world?</div>
       <div className='ml-auto mt-0  p-5'>
         {theme == "light" ? (
-          <div className='flex items-center gap-1'>
+          <div  onClick={() => {
+            setTheme("dark");
+            localStorage.setItem("theme", "dark");
+          }} className='flex items-center cursor-pointer gap-1'>
             <HiMoon
-              onClick={() => {
-                setTheme("dark");
-                localStorage.setItem("theme", "dark");
-              }}
+             
             />
             <p className='text-base md:text-xl'>Dark Mode</p>
           </div>
         ) : (
-          <div className='dark:text-yellow-300 flex items-center gap-1'>
+          <div  onClick={() => {
+            setTheme("light");
+            localStorage.setItem("theme", "light");
+          }} className='dark:text-yellow-300 flex cursor-pointer items-center gap-1'>
             <RiSunLine
-              onClick={() => {
-                setTheme("light");
-                localStorage.setItem("theme", "light");
-              }}
+             
             />
             <p className='text-base text-Mwhite md:text-xl'>Light Mode</p>
           </div>

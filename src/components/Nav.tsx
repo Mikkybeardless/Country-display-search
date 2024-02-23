@@ -16,7 +16,7 @@ const handleClick = () =>{
   return (
     
       <div className='flex items-center p-2 w-[100%] h-12 md:w-[50%] lg:w-[45rem] ml-3 mr-3 md:ml-8  bg-white dark:bg-darkBlue shadow-sm   rounded-sm mt-3 gap-2'>
-        <IoIosSearch className='dark:text-white text-veryDarkBlue' />
+        <IoIosSearch className='dark:text-white text-veryDarkBlue text-xl ' />
         <form onSubmit={handleSubmit} action=''>
           <input
             onChange={(e) => {

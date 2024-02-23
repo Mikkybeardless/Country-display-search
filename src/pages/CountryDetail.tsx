@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from "react";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, redirect } from "react-router-dom";
 import { ApiUrl } from "../Utility/Api";
 import BackBtn from "../components/BackBtn";
 import { Country } from "../Types";
@@ -15,6 +15,10 @@ const CountryDetail = () => {
   useEffect(() => {
     const getCountryByName = async () => {
       try {
+
+        if (!countryName){
+          return redirect("/");
+        }
         const res = await fetch(`${ApiUrl}/name/${countryName}`);
         if (!res.ok) throw new Error("Country not found");
         const data = await res.json();
@@ -29,6 +33,8 @@ const CountryDetail = () => {
 
     getCountryByName();
   }, [countryName]);
+
+
 
   return (
     <div className=' md:mx-16 mx-6 pr-12  md:mt-[5rem] text-veryDarkBlue  md:w-full mt-5 dark:text-white '>
